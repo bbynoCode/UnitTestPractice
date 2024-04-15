@@ -34,3 +34,24 @@ TEST(PasswordTest, no_password)
 	int actual = my_password.count_leading_characters("");
 	ASSERT_EQ(0, actual);
 }
+
+TEST(PasswordTest, ten_letter_password)
+{
+	Password my_password;
+	int actual = my_password.count_leading_characters("zzzzzzzzzz");
+	ASSERT_EQ(10, actual);
+}
+
+TEST(PasswordTest, no_mixed_case)
+{
+	Password my_password;
+	bool actual = my_password.has_mixed_case("zzzzzz");
+	ASSERT_FALSE(actual);
+}
+
+TEST(PasswordTest, yes_mixed_case)
+{
+	Password my_password;
+	bool actual = my_password.has_mixed_case("zZ");
+	ASSERT_TRUE(actual);
+}
