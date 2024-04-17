@@ -76,3 +76,10 @@ TEST(PasswordTest, 1_letter_mixed_case)
 	bool actual = my_password.has_mixed_case("z");
 	ASSERT_FALSE(actual);
 }
+
+TEST(PasswordTest, mixed_case_symbols)
+{
+	Password my_password;
+	bool actual = my_password.has_mixed_case("z#76546as7HASD7hdjs*&^");
+	ASSERT_TRUE(actual);
+}

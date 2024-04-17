@@ -33,12 +33,107 @@ bool Password::has_mixed_case(string phrase){
   if(phrase.length() == 1)
     return false;
 
+  bool has_lower = false;
+  bool has_upper = false;
+
   int index = 0;
-  while( index < phrase.length()){
-    if(islower(phrase[index]) && isupper(phrase[index+1])) {
-      return true;
+  while(index < phrase.length()){
+    if (islower(phrase[index])){
+      has_lower = true;
+    } else if (isupper(phrase[index])) {
+      has_upper = true;
     }
     index++;
   }
-  return false;
+  return has_lower && has_upper;
 }
+
+// // Implementation A
+// #include <cctype>
+// bool Password::has_mixed_case(string str)
+// {
+//   bool has_lower = false;
+//   bool has_upper = false;
+//   for (char ch : str)
+//   {
+//     if (std::islower(ch))
+//     {
+//       has_lower = true;
+//     }
+//     else if (std::isupper(ch))
+//     {
+//       has_upper = true;
+//     }
+//   }
+//   return has_lower && has_upper;
+// }
+
+// // Implementation B
+// bool Password::has_mixed_case(string str)
+// {
+//   int count_lower = 0;
+//   for (int i = 0; i < str.length(); i++)
+//   {
+//     if (str[i] >= 'a' && str[i] <= 'z')
+//     {
+//       count_lower++;
+//     }
+//   }
+//   return count_lower > 0 && count_lower < str.length();
+// }
+
+
+// // Implementation C
+// bool Password::has_mixed_case(string str)
+// {
+//   bool lower = false;
+//   bool upper = false;
+//   for (int i = 0; i < str.length(); i++)
+//   {
+//     if (str[i] >= 'a' && str[i] <= 'z')
+//     {
+//       lower = true;
+//     }
+//     else if (str[i] >= 'A' && str[i] <= 'Z')
+//     {
+//       upper = true;
+//     }
+//   }
+//   return upper && lower;
+// }
+
+
+// // Implementation D
+// // #include <cctype>
+// bool Password::has_mixed_case(string str)
+// {
+//   bool is_lower = false;
+//   bool is_upper = false;
+//   for (char c : str)
+//   {
+//     if (std::islower(c))
+//     {
+//       is_lower = true;
+//     }
+//     else
+//     {
+//       is_upper = true;
+//     }
+//   }
+//   return is_lower && is_upper;
+// }
+
+// // Implementation E
+// bool Password::has_mixed_case(string str)
+// {
+//   bool found = false;
+//   for(char c : str){
+//     if( !found && c >= 'A' && c <= 'Z' ){
+//       found = true;
+//     }
+//     else if( found && c >= 'a' && c <= 'z'){
+//       return true;
+//     }
+//   }
+//   return false;
+// }
