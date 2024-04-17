@@ -55,3 +55,24 @@ TEST(PasswordTest, yes_mixed_case)
 	bool actual = my_password.has_mixed_case("zZ");
 	ASSERT_TRUE(actual);
 }
+
+TEST(PasswordTest, yes_mixed_case_long)
+{
+	Password my_password;
+	bool actual = my_password.has_mixed_case("zZZZzzzzZ");
+	ASSERT_TRUE(actual);
+}
+
+TEST(PasswordTest, empty_mixed_case)
+{
+	Password my_password;
+	bool actual = my_password.has_mixed_case("");
+	ASSERT_FALSE(actual);
+}
+
+TEST(PasswordTest, 1_letter_mixed_case)
+{
+	Password my_password;
+	bool actual = my_password.has_mixed_case("z");
+	ASSERT_FALSE(actual);
+}
