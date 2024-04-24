@@ -4,6 +4,7 @@
 
 #include <gtest/gtest.h>
 #include "Password.h"
+#include <string>
 
 class PracticeTest : public ::testing::Test
 {
@@ -97,3 +98,56 @@ TEST(PasswordTest, no_mixed_case_space)
 	bool actual = my_password.has_mixed_case("a a a a aa a a a a a");
 	ASSERT_FALSE(actual);
 }
+
+TEST(PasswordTest, constructor)
+{
+	Password my_password;
+	bool actual = my_password.authenticate("ChicoCA-95929");
+	ASSERT_TRUE(actual);
+}
+
+TEST(PasswordTest, set_too_short)
+{
+	string pw = "jdnesix";
+	Password my_password;
+	my_password.set(pw);
+	bool actual = my_password.authenticate(pw);
+	ASSERT_FALSE(actual);
+}
+
+TEST(PasswordTest, set_too_long)
+{
+	string pw = "jsjsjsjsjsjsjsjsjsjsjsjsjsjs";
+	Password my_password;
+	my_password.set(pw);
+	bool actual = my_password.authenticate(pw);
+	ASSERT_FALSE(actual);
+}
+
+TEST(PasswordTest, set_too_many_leading_chars)
+{
+	string pw = "jjjjjdnesix";
+	Password my_password;
+	my_password.set(pw);
+	bool actual = my_password.authenticate(pw);
+	ASSERT_FALSE(actual);
+}
+
+TEST(PasswordTest, set_no_mixed_case)
+{
+	string pw = "aa123becjk";
+	Password my_password;
+	my_password.set(pw);
+	bool actual = my_password.authenticate(pw);
+	ASSERT_FALSE(actual);
+}
+
+TEST(PasswordTest, set_true)
+{
+	string pw = "KJ9nao12kf";
+	Password my_password;
+	my_password.set(pw);
+	bool actual = my_password.authenticate(pw);
+	ASSERT_TRUE(actual);
+}
+
