@@ -83,3 +83,17 @@ TEST(PasswordTest, mixed_case_symbols)
 	bool actual = my_password.has_mixed_case("z#76546as7HASD7hdjs*&^");
 	ASSERT_TRUE(actual);
 }
+
+TEST(PasswordTest, no_mixed_case_symbols)
+{
+	Password my_password;
+	bool actual = my_password.has_mixed_case("z#76546as77hdjs*&^");
+	ASSERT_FALSE(actual);
+}
+
+TEST(PasswordTest, no_mixed_case_space)
+{
+	Password my_password;
+	bool actual = my_password.has_mixed_case("a a a a aa a a a a a");
+	ASSERT_FALSE(actual);
+}
