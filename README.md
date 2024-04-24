@@ -19,3 +19,8 @@ configuration), you only need to repeat this command.
 
 `docker run -v "$(pwd)":/usr/src -it cpp-container`
 `docker run -v "$(pwd)":/usr/src -it cpp-container sh`
+make clean
+make
+./PasswordTest
+gcov -rbc Password.cpp
+

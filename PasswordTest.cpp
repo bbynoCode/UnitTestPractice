@@ -85,6 +85,13 @@ TEST(PasswordTest, mixed_case_symbols)
 	ASSERT_TRUE(actual);
 }
 
+TEST(PasswordTest, mixed_case_no_lower)
+{
+	Password my_password;
+	bool actual = my_password.has_mixed_case("ZZZZZ123123");
+	ASSERT_FALSE(actual);
+}
+
 TEST(PasswordTest, no_mixed_case_symbols)
 {
 	Password my_password;
